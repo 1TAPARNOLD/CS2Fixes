@@ -57,31 +57,7 @@ void UnregisterEventListeners()
 	g_vecEventListeners.Purge();
 }
 
-bool g_bForceCT = true;
 
-CON_COMMAND_F(c_force_ct, "toggle forcing CTs on every round", FCVAR_SPONLY | FCVAR_LINKED_CONCOMMAND)
-{
-	g_bForceCT = !g_bForceCT;
-
-	Message("Forcing CTs on every round is now %s.\n", g_bForceCT ? "ON" : "OFF");
-}
-
-GAME_EVENT_F(round_prestart)
-{
-	if (!g_bForceCT)
-		return;
-
-	for (int i = 1; i <= MAXPLAYERS; i++)
-	{
-		CCSPlayerController *pController = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity(CEntityIndex(i));
-
-		// Only do this for Ts, ignore CTs and specs
-		if (!pController || pController->m_iTeamNum() != CS_TEAM_T)
-			continue;
-
-		addresses::CCSPlayerController_SwitchTeam(pController, CS_TEAM_CT);
-	}
-}
 
 bool g_bBlockTeamMessages = true;
 
@@ -139,58 +115,4 @@ GAME_EVENT_F(player_hurt)
 		return;
 
 	pPlayer->SetTotalDamage(pPlayer->GetTotalDamage() + pEvent->GetInt("dmg_health"));
-}
-
-GAME_EVENT_F(round_start)
-{
-	for (int i = 0; i < MAXPLAYERS; i++)
-	{
-		ZEPlayer* pPlayer = g_playerManager->GetPlayer(i);
-
-		if (!pPlayer)
-			continue;
-
-		pPlayer->SetTotalDamage(0);
-	}
-}
-
-int SortPlayerDamage(ZEPlayer* const* a, ZEPlayer* const* b)
-{
-	return (*a)->GetTotalDamage() < (*b)->GetTotalDamage();
-}
-
-GAME_EVENT_F(round_end)
-{
-	CUtlVector<ZEPlayer*> sortedPlayers;
-
-	for (int i = 0; i < MAXPLAYERS; i++)
-	{
-		ZEPlayer* pPlayer = g_playerManager->GetPlayer(i);
-
-		if (!pPlayer)
-			continue;
-
-		CCSPlayerController* pController = (CCSPlayerController*)g_pEntitySystem->GetBaseEntity(CEntityIndex(pPlayer->GetPlayerSlot().Get() + 1));
-
-		if(!pController)
-			continue;
-
-		if (pController->m_iTeamNum == CS_TEAM_CT && pController->m_bPawnIsAlive)
-			sortedPlayers.AddToTail(pPlayer);
-	}
-
-	sortedPlayers.Sort(SortPlayerDamage);
-
-	ClientPrintAll(HUD_PRINTTALK, " \x09TOP DEFENDERS");
-
-	char colorMap[] = { '\x10', '\x08', '\x09', '\x0B'};
-
-	for (int i = 0; i < MIN(sortedPlayers.Count(), 5); i++)
-	{
-		ZEPlayer* pPlayer = sortedPlayers[i];
-		CCSPlayerController* pController = (CCSPlayerController*)g_pEntitySystem->GetBaseEntity(CEntityIndex(pPlayer->GetPlayerSlot().Get() + 1));
-
-		ClientPrintAll(HUD_PRINTTALK, " %c%i. %s \x01- \x07%i DMG", colorMap[MIN(i, 3)], i + 1, pController->GetPlayerName(), pPlayer->GetTotalDamage());
-		pPlayer->SetTotalDamage(0);
-	}
 }
