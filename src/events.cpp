@@ -59,6 +59,7 @@ void UnregisterEventListeners()
 
 
 
+
 bool g_bBlockTeamMessages = true;
 
 CON_COMMAND_F(c_toggle_team_messages, "toggle team messages", FCVAR_SPONLY | FCVAR_LINKED_CONCOMMAND)
@@ -90,6 +91,14 @@ GAME_EVENT_F(player_spawn)
 		if (!pController)
 			return;
 
+		int iPlayer = pController->GetPlayerSlot();
+		ZEPlayer* pZEPlayer = g_playerManager->GetPlayer(iPlayer);
+
+		if (pZEPlayer)
+		{
+			pZEPlayer->SetUsedMedkit(false);
+		}
+
 		CBasePlayerPawn *pPawn = pController->GetPawn();
 
 		// Just in case somehow there's health but the player is, say, an observer
@@ -100,19 +109,25 @@ GAME_EVENT_F(player_spawn)
 		pPawn->m_pCollision->m_CollisionGroup = COLLISION_GROUP_DEBRIS;
 		pPawn->CollisionRulesChanged();
 	});
+
+	Message("EVENT FIRED: %s %s\n", pEvent->GetName(), pController->GetPlayerName());
 }
 
-GAME_EVENT_F(player_hurt)
+GAME_EVENT_F(player_death)
 {
-	CBasePlayerController* pController = (CBasePlayerController*)pEvent->GetPlayerController("attacker");
-
-	if (!pController)
+	if (!g_bShowKillMessages)
 		return;
 
-	ZEPlayer* pPlayer = g_playerManager->GetPlayer(pController->GetPlayerSlot());
+	// Get the killer and victim IDs from the event
+	CBasePlayerController *pController = (CBasePlayerController*)pEvent->GetPlayerController("userid");
+	CBasePlayerController *pAttacker = (CBasePlayerController*)pEvent->GetPlayerController("attacker");
+	// get distance "distance"
+	float distance = pEvent->GetFloat("distance");
 
-	if (!pPlayer)
+	if (!pController || !pAttacker)
 		return;
 
-	pPlayer->SetTotalDamage(pPlayer->GetTotalDamage() + pEvent->GetInt("dmg_health"));
+	// ChatPrint for attacker and victim
+	ClientPrint(pController, HUD_PRINTTALK, CHAT_PREFIX"You were killed by \4%s \1from \2%.1fm \1away.", pAttacker->GetPlayerName(), distance);
+	ClientPrint(pAttacker, HUD_PRINTTALK, CHAT_PREFIX"You killed \4%s \1from \2%.1fm \1away.", pController->GetPlayerName(), distance);
 }
