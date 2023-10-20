@@ -192,12 +192,12 @@ CON_COMMAND_CHAT(vipinfo, "vip info")
 	if (!player)
 		return;
 
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting health: \5 100-115.");
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting armor: \5 110-120.");
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Money add every round: \5 1000-3000.");
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting with: \5 defeuser, he, smoke, molotov, flashbang.");
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Smoke color: \5 green.");
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1For buying VIP, join our discord: \5 discord.gg/1tap.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting health: \4 100-115.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting armor: \4 110-120.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Money add every round: \4 1000-3000.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting with: \4 defeuser, he, smoke, molotov, flashbang.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Smoke color: \4 green.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1For buying VIP, join our discord: \4 discord.gg/1tap.");
 }
 
 CON_COMMAND_CHAT(vip, "vip info")
@@ -205,12 +205,12 @@ CON_COMMAND_CHAT(vip, "vip info")
 	if (!player)
 		return;
 
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting health: \5 100-115.");
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting armor: \5 110-120.");
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Money add every round: \5 1000-3000.");
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting with: \5 defeuser, he, smoke, molotov, flashbang.");
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Smoke color: \5 green.");
-	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1For buying VIP, join our discord: \5 discord.gg/1tap.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting health: \4 100-115.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting armor: \4 110-120.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Money add every round: \4 1000-3000.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Starting with: \4 defeuser, he, smoke, molotov, flashbang.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1Smoke color: \4 green.");
+	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"\1For buying VIP, join our discord: \4 discord.gg/1tap.");
 }
 
 CON_COMMAND_CHAT(rs, "reset your score")

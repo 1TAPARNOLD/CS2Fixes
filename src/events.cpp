@@ -124,5 +124,13 @@ GAME_EVENT_F(player_death)
 		return;
 
 	ClientPrint(pController, HUD_PRINTTALK, CHAT_PREFIX"You were killed by \4%s \1from \2%.1fm \1away.", pAttacker->GetPlayerName(), distance);
-	ClientPrint(pAttacker, HUD_PRINTTALK, CHAT_PREFIX"You killed \5%s \1from \5%.1fm \1away.", pController->GetPlayerName(), distance);
+	ClientPrint(pAttacker, HUD_PRINTTALK, CHAT_PREFIX"You killed \4%s \1from \4%.1fm \1away.", pController->GetPlayerName(), distance);
+}
+
+GAME_EVENT_F(player_hurt)
+{
+	CBasePlayerController* died = (CBasePlayerController*)pEvent->GetPlayerController("userid");
+	CBasePlayerController* killer = (CBasePlayerController*)pEvent->GetPlayerController("attacker");
+	//, died->GetPlayerName()
+	ClientPrint(killer, HUD_PRINTCENTER, "Снято HP:  | Цель: \n Осталось ХП: ");
 }
