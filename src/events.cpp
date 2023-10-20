@@ -115,19 +115,14 @@ GAME_EVENT_F(player_spawn)
 
 GAME_EVENT_F(player_death)
 {
-	if (!g_bShowKillMessages)
-		return;
 
-	// Get the killer and victim IDs from the event
 	CBasePlayerController *pController = (CBasePlayerController*)pEvent->GetPlayerController("userid");
 	CBasePlayerController *pAttacker = (CBasePlayerController*)pEvent->GetPlayerController("attacker");
-	// get distance "distance"
 	float distance = pEvent->GetFloat("distance");
 
 	if (!pController || !pAttacker)
 		return;
 
-	// ChatPrint for attacker and victim
 	ClientPrint(pController, HUD_PRINTTALK, CHAT_PREFIX"You were killed by \4%s \1from \2%.1fm \1away.", pAttacker->GetPlayerName(), distance);
-	ClientPrint(pAttacker, HUD_PRINTTALK, CHAT_PREFIX"You killed \4%s \1from \2%.1fm \1away.", pController->GetPlayerName(), distance);
+	ClientPrint(pAttacker, HUD_PRINTTALK, CHAT_PREFIX"You killed \5%s \1from \5%.1fm \1away.", pController->GetPlayerName(), distance);
 }
