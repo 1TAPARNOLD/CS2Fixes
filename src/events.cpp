@@ -89,8 +89,8 @@ GAME_EVENT_F(player_team)
 GAME_EVENT_F(player_chat)
 {
 
-	ZEPlayer* pAdmin = g_playerManager->GetPlayer(i);
-    CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(i + 1));
+	ZEPlayer* pAdmin = g_playerManager->GetPlayer(cPlayer);
+    CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(cPlayer + 1));
 
 	
     if (!cPlayer || !pAdmin || pAdmin->IsFakeClient() || !pAdmin->IsAdminFlagSet(ADMFLAG_SLAY))
