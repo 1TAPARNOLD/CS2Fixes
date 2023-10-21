@@ -228,7 +228,6 @@ CON_COMMAND_CHAT(rs, "reset your score")
 	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"You successfully reset your score.");
 }
 
-
 CON_COMMAND_CHAT(a, "admins chat")
 {
     if (!player)
