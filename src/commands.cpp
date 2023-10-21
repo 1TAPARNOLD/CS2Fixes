@@ -228,35 +228,6 @@ CON_COMMAND_CHAT(rs, "reset your score")
 	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"You successfully reset your score.");
 }
 
-GAME_EVENT_F(player_chat)
-{
-	pEvent->SetBool("silent", true);
-
-	if (!player)
-        return;
-
-    int iCommandPlayer = player->GetPlayerSlot();
-
-    ZEPlayer *pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
-    if (args.ArgC() < 2)
-    {
-        
-        ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX "Usage: <message> to admins");
-        return;
-    }
-
-	for (int i = 0; i < MAXPLAYERS; i++)
-	{
-		ZEPlayer* pAdmin = g_playerManager->GetPlayer(i);
-		CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(i + 1));
-
-		if (!cPlayer || !pAdmin || pAdmin->IsFakeClient() || !pAdmin->IsAdminFlagSet(ADMFLAG_SLAY))
-			continue;
-			ClientPrint(cPlayer, HUD_PRINTTALK," \3*************\14Admins Chat\3*************");
-			ClientPrint(cPlayer, HUD_PRINTTALK, " \7[Admins]\4 %s \1from \7%s ", args.ArgS(), player->GetPlayerName());
-			ClientPrint(cPlayer, HUD_PRINTTALK, " \3**************************************");
-	}
-};
 
 CON_COMMAND_CHAT(a, "admins chat")
 {
@@ -269,7 +240,7 @@ CON_COMMAND_CHAT(a, "admins chat")
     if (args.ArgC() < 2)
     {
         
-        ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX "Usage: /u <message> to admins");
+        ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX "Usage: /a <message> to admins");
         return;
     }
 
