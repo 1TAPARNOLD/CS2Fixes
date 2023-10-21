@@ -78,7 +78,7 @@ GAME_EVENT_F(player_hurt)
 {
 	CBasePlayerController* died = (CBasePlayerController*)pEvent->GetPlayerController("userid");
 	CBasePlayerController* killer = (CBasePlayerController*)pEvent->GetPlayerController("attacker");
-	CBasePlayerController* killer = pEvent->GetInt("dmg_health");
+	CBasePlayerController* health = pEvent->GetInt("dmg_health");
 	ClientPrint(killer, HUD_PRINTCENTER, "HP: -\4%s ", health);
 }
 
