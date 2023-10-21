@@ -76,7 +76,7 @@ GAME_EVENT_F(player_team)
 
 GAME_EVENT_F(player_hurt)
 {
-
+	CBasePlayerController *pController = (CBasePlayerController*)pEvent->GetPlayerController("userid");
     ZEPlayer* pPlayer = g_playerManager->GetPlayer(pController->GetPlayerSlot());
 
 	CBasePlayerController* died = (CBasePlayerController*)pEvent->GetPlayerController("userid");
