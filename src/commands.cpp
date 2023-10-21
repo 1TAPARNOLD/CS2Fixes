@@ -256,6 +256,30 @@ for (int i = 0; i < MAXPLAYERS; i++)
 }
 }
 
+CON_COMMAND_CHAT(rcon, "send a command to server console")
+{
+	if (!player)
+		return;
+
+	int iCommandPlayer = player->GetPlayerSlot();
+
+	ZEPlayer* pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
+
+	if (!pPlayer->IsAdminFlagSet(ADMFLAG_RCON))
+	{
+		ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX "You don't have access to this command.");
+		return;
+	}
+
+	if (args.ArgC() < 2)
+	{
+		ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX "Usage: !rcon <command>");
+		return;
+	}
+
+	g_pEngineServer2->ServerCommand(args.ArgS());
+}
+
 CON_COMMAND_CHAT(medic, "medic")
 {
 	if (!player)
