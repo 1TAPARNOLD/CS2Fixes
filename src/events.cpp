@@ -23,6 +23,7 @@
 #include "ctimer.h"
 #include "eventlistener.h"
 #include "entity/cbaseplayercontroller.h"
+#include "adminsystem.h"
 
 #include "tier0/memdbgon.h"
 #include "playermanager.h"
@@ -77,8 +78,10 @@ GAME_EVENT_F(player_team)
 GAME_EVENT_F(player_chat)
 {
 
-	ZEPlayer* pAdmin = g_playerManager->GetPlayer(i);
-	CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(i + 1));
+	for (int i = 0; i < 32; ++i) {
+
+	ZEPlayer* pZEPlayer = g_playerManager->GetPlayer(iPlayer);
+	CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(iPlayer + 1));
 
 	if (!cPlayer || !pAdmin || pAdmin->IsFakeClient() || !pAdmin->IsAdminFlagSet(ADMFLAG_SLAY))
     	continue;
@@ -88,12 +91,13 @@ GAME_EVENT_F(player_chat)
 
 	// Format the message with colors and admin name
 	char formattedMessage[256]; // Adjust the buffer size as needed
-	snprintf(formattedMessage, sizeof(formattedMessage), "\x04admin %s: %s", adminName, message);
+	snprintf(formattedMessage, sizeof(formattedMessage), "\4admin %s: %s", adminName, message);
 
 	// Send the colored message to all clients
-
+	ClientPrint(cPlayer, HUD_PRINTTALK, formattedMessage);
 
 		pEvent->SetBool("silent", true);
+	}
 }
 
 GAME_EVENT_F(player_spawn)
