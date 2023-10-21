@@ -78,14 +78,19 @@ GAME_EVENT_F(player_chat)
 {
 
 	ZEPlayer* pAdmin = g_playerManager->GetPlayer(i);
-    CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(i + 1));
+	CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(i + 1));
 
-	
-    if (!cPlayer || !pAdmin || pAdmin->IsFakeClient() || !pAdmin->IsAdminFlagSet(ADMFLAG_SLAY))
-        continue;
-        ClientPrint(cPlayer, HUD_PRINTTALK," \3*************\14Admins Chat\3*************");
-        ClientPrint(cPlayer, HUD_PRINTTALK, " \7[Admins]\4 %s \1from \7%s ", args.ArgS(), player->GetPlayerName());
-        ClientPrint(cPlayer, HUD_PRINTTALK, " \3**************************************");
+	if (!cPlayer || !pAdmin || pAdmin->IsFakeClient() || !pAdmin->IsAdminFlagSet(ADMFLAG_SLAY))
+    	continue;
+
+	const char* adminName = pAdmin->GetPlayerName();
+	const char* message = args[1]; // Assuming args[1] contains the typed message
+
+	// Format the message with colors and admin name
+	char formattedMessage[256]; // Adjust the buffer size as needed
+	snprintf(formattedMessage, sizeof(formattedMessage), "\x04admin %s: %s", adminName, message);
+
+	// Send the colored message to all clients
 
 
 		pEvent->SetBool("silent", true);
