@@ -228,19 +228,6 @@ CON_COMMAND_CHAT(rs, "reset your score")
 	ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"You successfully reset your score.");
 }
 
-CON_COMMAND_CHAT(credits, "display your credits in chat")
-{
-	if (!player)
-		return;
-
-	int iPlayer = player->GetPlayerSlot();
-	ZEPlayer* pZEPlayer = g_playerManager->GetPlayer(iPlayer);
-
-	if (!pZEPlayer)
-		return;
-
-	ClientPrintAll(HUD_PRINTTALK, CHAT_PREFIX"%s have %d credits", player->GetPlayerName(), pZEPlayer->GetCredits());
-}
 
 CON_COMMAND_CHAT(a, "admins chat")
 {
