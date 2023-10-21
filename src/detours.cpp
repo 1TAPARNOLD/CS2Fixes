@@ -177,7 +177,6 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 		Message("Chat from %s to %s: %s\n", param1, target->GetPlayerName(), param2);
 #endif
 
-	UTIL_SayText2Filter(filter, pEntity, eMessageType, msg_name, param1, param2, param3, param4);
 }
 
 UTIL_SayText2Filter("Chat from %s \n", param1, target->GetPlayerName());
