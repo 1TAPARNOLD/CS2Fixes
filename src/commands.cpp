@@ -31,7 +31,7 @@
 #include "playermanager.h"
 #include "adminsystem.h"
 #include "ctimer.h"
-
+#include "eventlistener.h"
 #include "tier0/memdbgon.h"
 
 
@@ -243,7 +243,7 @@ GAME_EVENT_F(player_chat)
 			ClientPrint(cPlayer, HUD_PRINTTALK, " \7[Admins]\4 %s \1from \7%s ", args.ArgS(), player->GetPlayerName());
 			ClientPrint(cPlayer, HUD_PRINTTALK, " \3**************************************");
 	}
-}
+};
 
 CON_COMMAND_CHAT(a, "admins chat")
 {
