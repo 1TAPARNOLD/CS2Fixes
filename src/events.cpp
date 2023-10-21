@@ -74,6 +74,23 @@ GAME_EVENT_F(player_team)
 		pEvent->SetBool("silent", true);
 }
 
+GAME_EVENT_F(player_chat)
+{
+
+	ZEPlayer* pAdmin = g_playerManager->GetPlayer(i);
+    CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(i + 1));
+
+	
+    if (!cPlayer || !pAdmin || pAdmin->IsFakeClient() || !pAdmin->IsAdminFlagSet(ADMFLAG_SLAY))
+        continue;
+        ClientPrint(cPlayer, HUD_PRINTTALK," \3*************\14Admins Chat\3*************");
+        ClientPrint(cPlayer, HUD_PRINTTALK, " \7[Admins]\4 %s \1from \7%s ", args.ArgS(), player->GetPlayerName());
+        ClientPrint(cPlayer, HUD_PRINTTALK, " \3**************************************");
+
+
+		pEvent->SetBool("silent", true);
+}
+
 GAME_EVENT_F(player_spawn)
 {
 	CBasePlayerController *pController = (CBasePlayerController*)pEvent->GetPlayerController("userid");
