@@ -86,6 +86,15 @@ GAME_EVENT_F(player_hurt)
 	ClientPrint(killer, HUD_PRINTCENTER, "-\4%d ", health);
 }
 
+GAME_EVENT_F(player_chat)
+{
+	ZEPlayer* pPlayer = g_playerManager->GetPlayer(pController->GetPlayerSlot());
+
+	uint16 text = pEvent->GetInt("text");
+
+	ClientPrint(killer, HUD_PRINTCENTER, "-\4%d ", text);
+}
+
 GAME_EVENT_F(player_spawn)
 {
 	CBasePlayerController *pController = (CBasePlayerController*)pEvent->GetPlayerController("userid");
