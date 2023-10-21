@@ -180,6 +180,8 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 	UTIL_SayText2Filter(filter, pEntity, eMessageType, msg_name, param1, param2, param3, param4);
 }
 
+UTIL_SayText2Filter("Chat from %s \n", param1, target->GetPlayerName());
+
 void FASTCALL Detour_Host_Say(CCSPlayerController *pController, CCommand &args, bool teamonly, int unk1, const char *unk2)
 {
 	bool bGagged = pController && g_playerManager->GetPlayer(pController->GetPlayerSlot())->IsGagged();
