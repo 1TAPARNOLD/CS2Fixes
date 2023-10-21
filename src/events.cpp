@@ -80,14 +80,14 @@ GAME_EVENT_F(player_chat)
 
 	for (int i = 0; i < 32; ++i) {
 
-	ZEPlayer* pZEPlayer = g_playerManager->GetPlayer(iPlayer);
+	ZEPlayer* pAdmin  = g_playerManager->GetPlayer(iPlayer);
 	CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(iPlayer + 1));
 
 	if (!cPlayer || !pAdmin || pAdmin->IsFakeClient() || !pAdmin->IsAdminFlagSet(ADMFLAG_SLAY))
     	continue;
 
 	const char* adminName = pAdmin->GetPlayerName();
-	const char* message = args[1]; // Assuming args[1] contains the typed message
+	const char* message = text; // Assuming args[1] contains the typed message
 
 	// Format the message with colors and admin name
 	char formattedMessage[256]; // Adjust the buffer size as needed
