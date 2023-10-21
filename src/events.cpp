@@ -83,7 +83,7 @@ GAME_EVENT_F(player_hurt)
 	CBasePlayerController* killer = (CBasePlayerController*)pEvent->GetPlayerController("attacker");
 	uint16 health = pEvent->GetInt("dmg_health");
 
-	ClientPrint(killer, HUD_PRINTCENTER, "HP: -\4%d ", health);
+	ClientPrint(killer, HUD_PRINTCENTER, "-\4%d ", health);
 }
 
 GAME_EVENT_F(player_spawn)
