@@ -26,18 +26,6 @@
 
 #include "tier0/memdbgon.h"
 #include "playermanager.h"
-#include "detours.h"
-#include "recipientfilters.h"
-#include "utils/entity.h"
-#include "entity/cbaseentity.h"
-#include "entity/ccsweaponbase.h"
-#include "entity/ccsplayerpawn.h"
-#include "entity/cbasemodelentity.h"
-#include "playermanager.h"
-#include "adminsystem.h"
-#include "ctimer.h"
-
-#include "tier0/memdbgon.h"
 
 extern IGameEventManager2 *g_gameEventManager;
 extern IServerGameClients *g_pSource2GameClients;
@@ -83,22 +71,6 @@ GAME_EVENT_F(player_team)
 {
 	// Remove chat message for team changes
 	if (g_bBlockTeamMessages)
-		pEvent->SetBool("silent", true);
-}
-
-GAME_EVENT_F(player_chat)
-{
-
-	ZEPlayer* pAdmin = g_playerManager->GetPlayer(cPlayer);
-    CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(cPlayer + 1));
-
-	
-    if (!cPlayer || !pAdmin || pAdmin->IsFakeClient() || !pAdmin->IsAdminFlagSet(ADMFLAG_SLAY))
-        continue;
-        ClientPrint(cPlayer, HUD_PRINTTALK," \3*************\14Admins Chat\3*************");
-        ClientPrint(cPlayer, HUD_PRINTTALK, " \7[Admins]\4 %s \1from \7%s ", args.ArgS(), player->GetPlayerName());
-        ClientPrint(cPlayer, HUD_PRINTTALK, " \3**************************************");
-
 		pEvent->SetBool("silent", true);
 }
 
