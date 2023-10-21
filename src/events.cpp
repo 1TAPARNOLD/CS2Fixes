@@ -93,7 +93,7 @@ GAME_EVENT_F(player_chat)
 
 	uint16 text = pEvent->GetInt("text");
 
-	ClientPrint(pPlayer, HUD_PRINTCENTER, "-\4%d ", text);
+	ClientPrint(pPlayer, HUD_PRINTTALK, "%d ", text);
 }
 
 GAME_EVENT_F(player_spawn)
