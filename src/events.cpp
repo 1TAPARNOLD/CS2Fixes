@@ -23,10 +23,21 @@
 #include "ctimer.h"
 #include "eventlistener.h"
 #include "entity/cbaseplayercontroller.h"
-#include "adminsystem.h"
 
 #include "tier0/memdbgon.h"
 #include "playermanager.h"
+#include "detours.h"
+#include "recipientfilters.h"
+#include "utils/entity.h"
+#include "entity/cbaseentity.h"
+#include "entity/ccsweaponbase.h"
+#include "entity/ccsplayerpawn.h"
+#include "entity/cbasemodelentity.h"
+#include "playermanager.h"
+#include "adminsystem.h"
+#include "ctimer.h"
+
+#include "tier0/memdbgon.h"
 
 extern IGameEventManager2 *g_gameEventManager;
 extern IServerGameClients *g_pSource2GameClients;
@@ -78,26 +89,17 @@ GAME_EVENT_F(player_team)
 GAME_EVENT_F(player_chat)
 {
 
-	for (int i = 0; i < 32; ++i) {
+	ZEPlayer* pAdmin = g_playerManager->GetPlayer(i);
+    CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(i + 1));
 
-	ZEPlayer* pAdmin  = g_playerManager->GetPlayer(iPlayer);
-	CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(iPlayer + 1));
-
-	if (!cPlayer || !pAdmin || pAdmin->IsFakeClient() || !pAdmin->IsAdminFlagSet(ADMFLAG_SLAY))
-    	continue;
-
-	const char* adminName = pAdmin->GetPlayerName();
-	const char* message = text; // Assuming args[1] contains the typed message
-
-	// Format the message with colors and admin name
-	char formattedMessage[256]; // Adjust the buffer size as needed
-	snprintf(formattedMessage, sizeof(formattedMessage), "\4admin %s: %s", adminName, message);
-
-	// Send the colored message to all clients
-	ClientPrint(cPlayer, HUD_PRINTTALK, formattedMessage);
+	
+    if (!cPlayer || !pAdmin || pAdmin->IsFakeClient() || !pAdmin->IsAdminFlagSet(ADMFLAG_SLAY))
+        continue;
+        ClientPrint(cPlayer, HUD_PRINTTALK," \3*************\14Admins Chat\3*************");
+        ClientPrint(cPlayer, HUD_PRINTTALK, " \7[Admins]\4 %s \1from \7%s ", args.ArgS(), player->GetPlayerName());
+        ClientPrint(cPlayer, HUD_PRINTTALK, " \3**************************************");
 
 		pEvent->SetBool("silent", true);
-	}
 }
 
 GAME_EVENT_F(player_spawn)
