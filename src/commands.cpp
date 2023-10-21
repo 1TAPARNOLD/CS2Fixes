@@ -232,6 +232,19 @@ GAME_EVENT_F(player_chat)
 {
 	pEvent->SetBool("silent", true);
 
+	if (!player)
+        return;
+
+    int iCommandPlayer = player->GetPlayerSlot();
+
+    ZEPlayer *pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
+    if (args.ArgC() < 2)
+    {
+        
+        ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX "Usage: <message> to admins");
+        return;
+    }
+
 	for (int i = 0; i < MAXPLAYERS; i++)
 	{
 		ZEPlayer* pAdmin = g_playerManager->GetPlayer(i);
