@@ -83,7 +83,11 @@ GAME_EVENT_F(player_hurt)
 	CBasePlayerController* killer = (CBasePlayerController*)pEvent->GetPlayerController("attacker");
 	uint16 health = pEvent->GetInt("dmg_health");
 
-	ClientPrint(killer, HUD_PRINTCENTER, "-\4%d ", health);
+	if (pPlayer->IsAdminFlagSet(ADMFLAG_CONVARS))
+	{
+		ClientPrint(killer, HUD_PRINTCENTER, "-\4%d ", health);
+	}
+
 }
 
 
