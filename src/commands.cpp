@@ -192,7 +192,7 @@ void ClientSay(edict_t *pEntity, const char *pMsg)
 	CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(cPlayer + 1));
 
     char text[256];
-    sprintf(text, "[Player] %s: %s", cPlayer->GetPlayerName(), pMsg);
+    sprintf(text, "[Player] %s: %s", pEntity->GetPlayerName(), pMsg);
     ClientPrintAll(HUD_PRINTTALK, text);
 }
 
