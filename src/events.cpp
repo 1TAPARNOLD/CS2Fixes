@@ -23,6 +23,8 @@
 #include "ctimer.h"
 #include "eventlistener.h"
 #include "entity/cbaseplayercontroller.h"
+#include "adminsystem.h"
+
 
 #include "tier0/memdbgon.h"
 #include "playermanager.h"
