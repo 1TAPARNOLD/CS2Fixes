@@ -187,6 +187,13 @@ void ClientPrint(CBasePlayerController *player, int hud_dest, const char *msg, .
 	addresses::ClientPrint(player, hud_dest, buf, nullptr, nullptr, nullptr, nullptr);
 }
 
+void ClientSay(edict_t *pEntity, const char *pMsg)
+{
+    char text[256];
+    sprintf(text, "[Player] %s: %s", STRING(pEntity->v.netname), pMsg);
+    ClientPrintAll(HUD_PRINTTALK, text);
+}
+
 CON_COMMAND_CHAT(vipinfo, "vip info")
 {
 	if (!player)
