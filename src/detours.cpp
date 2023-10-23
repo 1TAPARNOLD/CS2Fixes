@@ -34,7 +34,7 @@
 #include "playermanager.h"
 #include "igameevents.h"
 #include "gameconfig.h"
-#include "admins"
+#include "adminssystem.h"
 
 #include "tier0/memdbgon.h"
 
