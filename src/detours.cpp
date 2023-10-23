@@ -178,20 +178,34 @@ void FASTCALL Detour_UTIL_SayText2Filter(
     ZEPlayer *pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
 	
 	char sBuffer[256];
-	if (pPlayer->IsAdminFlagSet(ADMFLAG_RESERVATION))
-	    V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4HELPER]\1 %s: \1%s", param1, param2);
-	if (pPlayer->IsAdminFlagSet(ADMFLAG_GENERIC))
-	    V_snprintf(sBuffer, sizeof(sBuffer), " \1[\13ADMINISTRATOR]\1 %s: \1%s", param1, param2);
-	if (pPlayer->IsAdminFlagSet(ADMFLAG_KICK))
-	    V_snprintf(sBuffer, sizeof(sBuffer), " \1[\12MODERATOR]\1 %s: \1%s", param1, param2);
-	if (pPlayer->IsAdminFlagSet(ADMFLAG_SLAY))
-	    V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2VETERAN]\1 %s: \1%s", param1, param2);
-	if (pPlayer->IsAdminFlagSet(ADMFLAG_VOTE))
-	    V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2MANAGER]\1 %s: \1%s", param1, param2);
-	if (pPlayer->IsAdminFlagSet(ADMFLAG_CHANGEMAP))
-	    V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2CO-OWNER]\1 %s: \1%s", param1, param2);
+		if (pPlayer->IsAdminFlagSet(ADMFLAG_RESERVATION))
+		{
+			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4HELPER]\1 %s: \1%s", param1, param2);
+		}
+		if (pPlayer->IsAdminFlagSet(ADMFLAG_GENERIC))
+		{
+			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4ADMINISTRATOR]\1 %s: \1%s", param1, param2);
+		}
+		if (pPlayer->IsAdminFlagSet(ADMFLAG_KICK))
+		{
+			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\12MODERATOR]\1 %s: \1%s", param1, param2);
+		}
+		if (pPlayer->IsAdminFlagSet(ADMFLAG_SLAY))
+		{
+			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2VETERAN]\1 %s: \1%s", param1, param2);
+		}
+		if (pPlayer->IsAdminFlagSet(ADMFLAG_VOTE))
+		{
+			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2MANAGER]\1 %s: \1%s", param1, param2);
+		}
+		if (pPlayer->IsAdminFlagSet(ADMFLAG_CHANGEMAP))
+		{
+			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2CO-OWNER]\1 %s: \1%s", param1, param2);
+		}
 		if (pPlayer->IsAdminFlagSet(ADMFLAG_ROOT))
-	    V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2OWNER]\1 %s: \1%s", param1, param2);
+		{
+			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2-OWNER]\1 %s: \1%s", param1, param2);
+		}
 	else
 	    V_snprintf(sBuffer, sizeof(sBuffer), " \4[Player]\3 %s: \1%s", param1, param2);
 	
