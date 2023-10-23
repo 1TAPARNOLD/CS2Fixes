@@ -147,17 +147,26 @@ bool FASTCALL Detour_IsHearingClient(void* serverClient, int index)
 
 void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pText, CCSPlayerController *pPlayer, uint64 eMessageType)
 {
-	int entindex = filter.GetRecipientIndex(0).Get();
-	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
+    if (pPlayer)
+    {
+        // Handle chat message for a specific player (pPlayer).
+        // Do something with the chat message for the specific player here.
+        // Example: pPlayer->SendMessage("You said: %s", pText);
+    }
+    else
+    {
+        int entindex = filter.GetRecipientIndex(0).Get();
+        CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
 
-	if (pPlayer)
-		return UTIL_SayTextFilter(filter, pText, pPlayer, eMessageType);
-
-	char buf[256];
-	V_snprintf(buf, sizeof(buf), "%s %s", " \7CONSOLE:\4", pText + sizeof("Console:"));
-
-	UTIL_SayTextFilter(filter, buf, pPlayer, eMessageType);
+        if (target)
+        {
+            char buf[256];
+            V_snprintf(buf, sizeof(buf), "%s %s", " \7CONSOLE:\4", pText + sizeof("Console:"));
+            UTIL_SayTextFilter(filter, buf, pPlayer, eMessageType);
+        }
+    }
 }
+
 
 void FASTCALL Detour_UTIL_SayText2Filter(
 	IRecipientFilter &filter,
@@ -183,30 +192,29 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 
 void FASTCALL Detour_Host_Say(CCSPlayerController *pController, CCommand &args, bool teamonly, int unk1, const char *unk2)
 {
-    bool bGagged = pController && g_playerManager->GetPlayer(pController->GetPlayerSlot())->IsGagged();
+	bool bGagged = pController && g_playerManager->GetPlayer(pController->GetPlayerSlot())->IsGagged();
 
-    if (!bGagged && *args[1] != '/')
-    {
-        // Call UTIL_SayTextFilter instead of Host_Say
-        UTIL_SayTextFilter(g_pEngineServer->GetUserMessageBegin(), args[1], pController, teamonly ? HUD_PRINTTALK : HUD_PRINTCONSOLE);
+	if (!bGagged && *args[1] != '/')
+	{
+		Host_Say(pController, args, teamonly, unk1, unk2);
 
-        if (pController)
-        {
-            IGameEvent *pEvent = g_gameEventManager->CreateEvent("player_chat");
+		if (pController)
+		{
+			IGameEvent *pEvent = g_gameEventManager->CreateEvent("player_chat");
 
-            if (pEvent)
-            {
-                pEvent->SetBool("teamonly", teamonly);
-                pEvent->SetInt("userid", pController->entindex());
-                pEvent->SetString("text", args[1]);
+			if (pEvent)
+			{
+				pEvent->SetBool("teamonly", teamonly);
+				pEvent->SetInt("userid", pController->entindex());
+				pEvent->SetString("text", args[1]);
 
-                g_gameEventManager->FireEvent(pEvent, true);
-            }
-        }
-    }
+				g_gameEventManager->FireEvent(pEvent, true);
+			}
+		}
+	}
 
-    if (*args[1] == '!' || *args[1] == '/')
-        ParseChatCommand(args[1], pController);
+	if (*args[1] == '!' || *args[1] == '/')
+		ParseChatCommand(args[1], pController);
 }
 
 void Detour_Log()
