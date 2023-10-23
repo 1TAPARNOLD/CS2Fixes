@@ -146,18 +146,26 @@ bool FASTCALL Detour_IsHearingClient(void* serverClient, int index)
 	return IsHearingClient(serverClient, index);
 }
 
-void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pText, CCSPlayerController *pPlayer, CBasePlayerController *player, uint64 eMessageType)
+void FASTCALL Detour_UTIL_SayText2Filter(
+	IRecipientFilter &filter,
+	CCSPlayerController *pEntity,
+	uint64 eMessageType,
+	const char *msg_name,
+	const char *param1,
+	const char *param2,
+	const char *param3,
+	const char *param4)
 {
-	int entindex = filter.GetRecipientIndex(0).Get();
+	int entindex = filter.GetRecipientIndex(0).Get() + 1;
 	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
 
-	if (pPlayer)
-		return UTIL_SayTextFilter(filter, pText, pPlayer, eMessageType);
+	if (target)
+	char sBuffer[256];
+		V_snprintf(sBuffer, sizeof(sBuffer), " \4[Player]\3 %s: \1%s", param1, param2);
 
-	char buf[256];
-	V_snprintf(buf, sizeof(buf), "%s %s", " \7 :\4", pText + sizeof("Console:"));
+		Message("DEBUG: msg_name: %s, param1: %s, param2: %s, param3: %s, param4: %s\n", msg_name, param1, param2, param3, param4);
+		UTIL_SayTextFilter(filter, sBuffer, pEntity, eMessageType);
 
-	UTIL_SayTextFilter(filter, buf, pPlayer, eMessageType);
 }
 
 void FASTCALL Detour_UTIL_SayText2Filter(
