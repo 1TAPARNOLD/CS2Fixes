@@ -185,9 +185,12 @@ void FASTCALL Detour_Host_Say(CCSPlayerController *pController, CCommand &args, 
 {
 	bool bGagged = pController && g_playerManager->GetPlayer(pController->GetPlayerSlot())->IsGagged();
 
+	Host_Say(pController, args, teamonly, unk1, unk2);
+
 	if (!bGagged && *args[1] != '/')
 	{
-		Host_Say(pController, args, teamonly, unk1, unk2);
+		Detour_UTIL_SayTextFilter(*g_pRecipientFilter, args[1], pController, 0);
+	}
 
 		if (pController)
 		{
@@ -206,7 +209,6 @@ void FASTCALL Detour_Host_Say(CCSPlayerController *pController, CCommand &args, 
 
 	if (*args[1] == '!' || *args[1] == '/')
 		ParseChatCommand(args[1], pController);
-}
 
 void Detour_Log()
 {
