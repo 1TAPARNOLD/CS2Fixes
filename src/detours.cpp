@@ -146,7 +146,7 @@ bool FASTCALL Detour_IsHearingClient(void* serverClient, int index)
 	return IsHearingClient(serverClient, index);
 }
 
-void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pText, CCSPlayerController *pPlayer, uint64 eMessageType)
+void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pText, CCSPlayerController *pPlayer, CBasePlayerController *player, uint64 eMessageType)
 {
 	int entindex = filter.GetRecipientIndex(0).Get();
 	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
@@ -173,7 +173,9 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 	int entindex = filter.GetRecipientIndex(0).Get() + 1;
 	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
 
- ZEPlayer* player = g_playerManager->GetPlayer(index);
+ ZEPlayer* pPlayer = g_playerManager->GetPlayer(i);
+
+	
 
 	char sBuffer[256];
 	if (!pPlayer->IsAdminFlagSet(ADMFLAG_BAN))
