@@ -172,16 +172,16 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 	int entindex = filter.GetRecipientIndex(0).Get() + 1;
 	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
 
-#ifdef _DEBUG
 	if (target)
 	char sBuffer[256];
 		V_snprintf(sBuffer, sizeof(sBuffer), " \4[Player]\3 %s: \1%s", param1, param2);
 
 		Message("DEBUG: msg_name: %s, param1: %s, param2: %s, param3: %s, param4: %s\n", msg_name, param1, param2, param3, param4);
-		UTIL_SayTextFilter(filter, sBuffer, pEntity, eMessageType);
-#endif
+
+	UTIL_SayTextFilter(filter, sBuffer, pEntity, eMessageType);
 
 }
+
 
 
 void FASTCALL Detour_Host_Say(CCSPlayerController *pController, CCommand &args, bool teamonly, int unk1, const char *unk2)
