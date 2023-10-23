@@ -163,12 +163,14 @@ void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pT
 void FASTCALL Detour_UTIL_SayText2Filter(
 	IRecipientFilter &filter,
 	CCSPlayerController *pEntity,
+	CCSPlayerController *pPlayer, 
+	CBasePlayerController *player, 
 	uint64 eMessageType,
 	const char *msg_name,
 	const char *param1,
 	const char *param2,
 	const char *param3,
-	const char *param4)
+	const char *param4,)
 {
 	int entindex = filter.GetRecipientIndex(0).Get() + 1;
 	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
