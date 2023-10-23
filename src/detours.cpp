@@ -173,8 +173,11 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
 
 	char sBuffer[256];
-	V_snprintf(sBuffer, sizeof(sBuffer), " \4[Player]\3 %s: \1%s", param1, param2);
-
+	if (pPlayer->IsAdminFlagSet(ADMFLAG_BAN))
+	    V_snprintf(sBuffer, sizeof(sBuffer), " \4[ADMIN]\3 %s: \1%s", param1, param2);
+	else
+	    V_snprintf(sBuffer, sizeof(sBuffer), " \4[Player]\3 %s: \1%s", param1, param2);
+	
 	Message("DEBUG: msg_name: %s, param1: %s, param2: %s, param3: %s, param4: %s\n", msg_name, param1, param2, param3, param4);
 	UTIL_SayTextFilter(filter, sBuffer, pEntity, eMessageType);
 }
