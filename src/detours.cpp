@@ -147,16 +147,14 @@ bool FASTCALL Detour_IsHearingClient(void* serverClient, int index)
 
 void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pText, CCSPlayerController *pPlayer, uint64 eMessageType)
 {
-	int entindex = filter.GetRecipientIndex(0).Get();
-	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
+   const char *playerMessage = pText; // Assuming the player's message is directly passed as pText
 
-	if (pPlayer)
-		return UTIL_SayTextFilter(filter, pText, pPlayer, eMessageType);
+    // Modify the player's message as needed (for example, adding colors)
+    char modifiedMessage[256];
+    V_snprintf(modifiedMessage, sizeof(modifiedMessage), "%s %s", "\7PLAYER:", playerMessage); // Modify the message format if necessary
 
-	char buf[256];
-	V_snprintf(buf, sizeof(buf), "%s %s", " \7CONSOLE:\4", pText + sizeof("Console:"));
-
-	UTIL_SayTextFilter(filter, buf, pPlayer, eMessageType);
+    // Pass the modified message to UTIL_SayTextFilter
+    UTIL_SayTextFilter(filter, modifiedMessage, pPlayer, eMessageType);
 }
 
 void FASTCALL Detour_UTIL_SayText2Filter(
