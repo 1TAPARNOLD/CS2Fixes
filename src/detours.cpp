@@ -183,29 +183,30 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 
 void FASTCALL Detour_Host_Say(CCSPlayerController *pController, CCommand &args, bool teamonly, int unk1, const char *unk2)
 {
-	bool bGagged = pController && g_playerManager->GetPlayer(pController->GetPlayerSlot())->IsGagged();
+    bool bGagged = pController && g_playerManager->GetPlayer(pController->GetPlayerSlot())->IsGagged();
 
-	if (!bGagged && *args[1] != '/')
-	{
-		Host_Say(pController, args, teamonly, unk1, unk2);
+    if (!bGagged && *args[1] != '/')
+    {
+        // Call UTIL_SayTextFilter instead of Host_Say
+        UTIL_SayTextFilter(g_pEngineServer->GetUserMessageBegin(), args[1], pController, teamonly ? HUD_PRINTTALK : HUD_PRINTCONSOLE);
 
-		if (pController)
-		{
-			IGameEvent *pEvent = g_gameEventManager->CreateEvent("player_chat");
+        if (pController)
+        {
+            IGameEvent *pEvent = g_gameEventManager->CreateEvent("player_chat");
 
-			if (pEvent)
-			{
-				pEvent->SetBool("teamonly", teamonly);
-				pEvent->SetInt("userid", pController->entindex());
-				pEvent->SetString("text", args[1]);
+            if (pEvent)
+            {
+                pEvent->SetBool("teamonly", teamonly);
+                pEvent->SetInt("userid", pController->entindex());
+                pEvent->SetString("text", args[1]);
 
-				g_gameEventManager->FireEvent(pEvent, true);
-			}
-		}
-	}
+                g_gameEventManager->FireEvent(pEvent, true);
+            }
+        }
+    }
 
-	if (*args[1] == '!' || *args[1] == '/')
-		ParseChatCommand(args[1], pController);
+    if (*args[1] == '!' || *args[1] == '/')
+        ParseChatCommand(args[1], pController);
 }
 
 void Detour_Log()
