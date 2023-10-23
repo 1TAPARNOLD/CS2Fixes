@@ -147,26 +147,17 @@ bool FASTCALL Detour_IsHearingClient(void* serverClient, int index)
 
 void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pText, CCSPlayerController *pPlayer, uint64 eMessageType)
 {
-    if (pPlayer)
-    {
-            char buf[256];
-            V_snprintf(buf, sizeof(buf), "%s %s", " \7CONSOLE:\4", pText + sizeof("Console:"));
-            UTIL_SayTextFilter(filter, buf, pPlayer, eMessageType);
-    }
-    else
-    {
-        int entindex = filter.GetRecipientIndex(0).Get();
-        CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
+	int entindex = filter.GetRecipientIndex(1).Get();
+	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
 
-        if (target)
-        {
-            char buf[256];
-            V_snprintf(buf, sizeof(buf), "%s %s", " \7CONSOLE:\4", pText + sizeof("Console:"));
-            UTIL_SayTextFilter(filter, buf, pPlayer, eMessageType);
-        }
-    }
+	if (pPlayer)
+		return UTIL_SayTextFilter(filter, pText, pPlayer, eMessageType);
+
+	char buf[256];
+	V_snprintf(buf, sizeof(buf), "%s %s", " \7CONSOLE:\4", pText + sizeof("Console:"));
+
+	UTIL_SayTextFilter(filter, buf, pPlayer, eMessageType);
 }
- 
 
 void FASTCALL Detour_UTIL_SayText2Filter(
 	IRecipientFilter &filter,
