@@ -149,9 +149,9 @@ void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pT
 {
     if (pPlayer)
     {
-        // Handle chat message for a specific player (pPlayer).
-        // Do something with the chat message for the specific player here.
-        // Example: pPlayer->SendMessage("You said: %s", pText);
+            char buf[256];
+            V_snprintf(buf, sizeof(buf), "%s %s", " \7CONSOLE:\4", pText + sizeof("Console:"));
+            UTIL_SayTextFilter(filter, buf, pPlayer, eMessageType);
     }
     else
     {
@@ -166,7 +166,7 @@ void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pT
         }
     }
 }
-
+ 
 
 void FASTCALL Detour_UTIL_SayText2Filter(
 	IRecipientFilter &filter,
