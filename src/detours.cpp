@@ -177,40 +177,41 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 
     ZEPlayer *pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
 	
-	char sBuffer[256];
-		if (pPlayer->IsAdminFlagSet(ADMFLAG_RESERVATION))
-		{
-			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4HELPER]\1 %s: \1%s", param1, param2);
-		}
-		if (pPlayer->IsAdminFlagSet(ADMFLAG_GENERIC))
-		{
-			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4ADMINISTRATOR]\1 %s: \1%s", param1, param2);
-		}
-		if (pPlayer->IsAdminFlagSet(ADMFLAG_KICK))
-		{
-			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\12MODERATOR]\1 %s: \1%s", param1, param2);
-		}
-		if (pPlayer->IsAdminFlagSet(ADMFLAG_SLAY))
-		{
-			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2VETERAN]\1 %s: \1%s", param1, param2);
-		}
-		if (pPlayer->IsAdminFlagSet(ADMFLAG_VOTE))
-		{
-			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2MANAGER]\1 %s: \1%s", param1, param2);
-		}
-		if (pPlayer->IsAdminFlagSet(ADMFLAG_CHANGEMAP))
-		{
-			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2CO-OWNER]\1 %s: \1%s", param1, param2);
-		}
-		if (pPlayer->IsAdminFlagSet(ADMFLAG_ROOT))
-		{
-			V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2-OWNER]\1 %s: \1%s", param1, param2);
-		}
-	else
-	    V_snprintf(sBuffer, sizeof(sBuffer), " \4[Player]\3 %s: \1%s", param1, param2);
-	
-	Message("DEBUG: msg_name: %s, param1: %s, param2: %s, param3: %s, param4: %s\n", msg_name, param1, param2, param3, param4);
-	UTIL_SayTextFilter(filter, sBuffer, pEntity, eMessageType);
+		char sBuffer[256];
+        if (pPlayer->IsAdminFlagSet(ADMFLAG_RESERVATION))
+        {
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4HELPER]\1 %s: \1%s", param1, param2);
+        }
+        else if (pPlayer->IsAdminFlagSet(ADMFLAG_GENERIC))
+        {
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4ADMINISTRATOR]\1 %s: \1%s", param1, param2);
+        }
+        else if (pPlayer->IsAdminFlagSet(ADMFLAG_KICK))
+        {
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\12MODERATOR]\1 %s: \1%s", param1, param2);
+        }
+        else if (pPlayer->IsAdminFlagSet(ADMFLAG_SLAY))
+        {
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2VETERAN]\1 %s: \1%s", param1, param2);
+        }
+        else if (pPlayer->IsAdminFlagSet(ADMFLAG_VOTE))
+        {
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2MANAGER]\1 %s: \1%s", param1, param2);
+        }
+        else if (pPlayer->IsAdminFlagSet(ADMFLAG_CHANGEMAP))
+        {
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2CO-OWNER]\1 %s: \1%s", param1, param2);
+        }
+        else if (pPlayer->IsAdminFlagSet(ADMFLAG_ROOT))
+        {
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2-OWNER]\1 %s: \1%s", param1, param2);
+        }
+        else {
+            V_snprintf(sBuffer, sizeof(sBuffer), " \4[Player]\3 %s: \1%s", param1, param2);
+        }
+    
+    Message("DEBUG: msg_name: %s, param1: %s, param2: %s, param3: %s, param4: %s\n", msg_name, param1, param2, param3, param4);
+    UTIL_SayTextFilter(filter, sBuffer, pEntity, eMessageType);
 }
 
 
