@@ -34,6 +34,7 @@
 #include "playermanager.h"
 #include "igameevents.h"
 #include "gameconfig.h"
+#include "adminsystem.h"
 
 #include "tier0/memdbgon.h"
 
@@ -172,6 +173,10 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 	int entindex = filter.GetRecipientIndex(0).Get() + 1;
 	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
 
+	     int iCommandPlayer = pEntity->GetPlayerSlot();
+
+    ZEPlayer *pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
+	
 	char sBuffer[256];
 	if (pPlayer->IsAdminFlagSet(ADMFLAG_BAN))
 	    V_snprintf(sBuffer, sizeof(sBuffer), " \4[ADMIN]\3 %s: \1%s", param1, param2);
