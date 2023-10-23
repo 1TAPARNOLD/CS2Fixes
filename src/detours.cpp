@@ -163,7 +163,6 @@ void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pT
 void FASTCALL Detour_UTIL_SayText2Filter(
 	IRecipientFilter &filter,
 	CCSPlayerController *pEntity,
-	CBasePlayerController *player, 
 	uint64 eMessageType,
 	const char *msg_name,
 	const char *param1,
@@ -174,7 +173,7 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 	int entindex = filter.GetRecipientIndex(0).Get() + 1;
 	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
 
- 	int iCommandPlayer = player->GetPlayerSlot();
+ 	int iCommandPlayer = pEntity->GetPlayerSlot();
 
 	ZEPlayer *pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
 
