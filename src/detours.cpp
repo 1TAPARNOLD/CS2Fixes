@@ -147,7 +147,7 @@ bool FASTCALL Detour_IsHearingClient(void* serverClient, int index)
 
 void FASTCALL Detour_UTIL_SayTextFilter(IRecipientFilter &filter, const char *pText, CCSPlayerController *pPlayer, uint64 eMessageType)
 {
-	int entindex = filter.GetRecipientIndex(1).Get();
+	int entindex = filter.GetRecipientIndex(0).Get();
 	CCSPlayerController *target = (CCSPlayerController *)g_pEntitySystem->GetBaseEntity((CEntityIndex)entindex);
 
 	if (pPlayer)
@@ -185,12 +185,9 @@ void FASTCALL Detour_Host_Say(CCSPlayerController *pController, CCommand &args, 
 {
 	bool bGagged = pController && g_playerManager->GetPlayer(pController->GetPlayerSlot())->IsGagged();
 
-	Host_Say(pController, args, teamonly, unk1, unk2);
-
 	if (!bGagged && *args[1] != '/')
 	{
-		Detour_UTIL_SayTextFilter(*g_pRecipientFilter, args[1], pController, 0);
-	}
+		Host_Say(pController, args, teamonly, unk1, unk2);
 
 		if (pController)
 		{
@@ -209,6 +206,7 @@ void FASTCALL Detour_Host_Say(CCSPlayerController *pController, CCommand &args, 
 
 	if (*args[1] == '!' || *args[1] == '/')
 		ParseChatCommand(args[1], pController);
+}
 
 void Detour_Log()
 {
