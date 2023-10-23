@@ -177,6 +177,8 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 
 	ZEPlayer *pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
 
+ ZEPlayer* player = g_playerManager->GetPlayer(index);
+
 	char sBuffer[256];
 	if (!pPlayer->IsAdminFlagSet(ADMFLAG_BAN))
 	{
