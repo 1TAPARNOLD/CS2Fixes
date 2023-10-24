@@ -92,10 +92,6 @@ GAME_EVENT_F(player_hurt)
 
 }
 
-void SetClanTag(CBasePlayerController *player, const char *tag)
-{
-	addresses::SetClanTag(player, tag);
-}
 
 GAME_EVENT_F(player_spawn)
 {
@@ -105,7 +101,6 @@ GAME_EVENT_F(player_spawn)
 		return;
 
 	CEntityHandle hController = pController->GetHandle();
-	
 
 	// Gotta do this on the next frame...
 	new CTimer(0.0f, false, false, [hController]()
@@ -132,9 +127,6 @@ GAME_EVENT_F(player_spawn)
 		pPawn->m_pCollision->m_collisionAttribute().m_nCollisionGroup = COLLISION_GROUP_DEBRIS;
 		pPawn->m_pCollision->m_CollisionGroup = COLLISION_GROUP_DEBRIS;
 		pPawn->CollisionRulesChanged();
-
-		SetClanTag(pZEPlayer, "[TEST TAG]");
-
 	});
 
 	Message("EVENT FIRED: %s %s\n", pEvent->GetName(), pController->GetPlayerName());

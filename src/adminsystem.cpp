@@ -623,7 +623,7 @@ CON_COMMAND_CHAT(map, "change map")
 
 	ZEPlayer *pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
 
-	if (!pPlayer->IsAdminFlagSet(ADMFLAG_CHANGEMAP))
+	if (!pPlayer->IsAdminFlagSet(ADMFLAG_BAN))
 	{
 		ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX"You don't have access to this command.");
 		return;
