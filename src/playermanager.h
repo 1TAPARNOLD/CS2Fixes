@@ -55,7 +55,7 @@ public:
 	bool IsFakeClient() { return m_bFakeClient; }
 	bool IsAuthenticated() { return m_bAuthenticated; }
 	bool IsConnected() { return m_bConnected; }
-	uint64 GetSteamId64() { return m_SteamID->ConvertToUint64(); }
+	uint64 GetSteamId64() { return m_SteamID ? m_SteamID->ConvertToUint64() : 0; }
 	const CSteamID* GetSteamId() { return m_SteamID; }
 	bool IsAdminFlagSet(uint64 iFlag);
 	
