@@ -71,6 +71,9 @@ public:
 	void SetHideDistance(int distance) { m_iHideDistance = distance; }
 	void SetTotalDamage(int damage) { m_iTotalDamage = damage; }
 
+	uint64 GetCredits() { return m_iCredits; }
+	void SetCredits(uint64 value) { m_iCredits = value; }
+
 	bool IsMuted() { return m_bMuted; }
 	bool IsGagged() { return m_bGagged; }
 	bool ShouldBlockTransmit(int index) { return m_shouldTransmit.Get(index); }
@@ -98,6 +101,9 @@ private:
 	int m_iHideDistance;
 	CBitVec<MAXPLAYERS> m_shouldTransmit;
 	int m_iTotalDamage;
+	int m_iCredits;
+	int m_vecShopPlayers;
+	
 };
 
 class CPlayerManager
@@ -145,5 +151,21 @@ private:
 	uint64 m_nUsingSilenceSound;
 	uint64 m_nUsingStopDecals;
 };
+
+class CShop
+{
+public:
+	uint64 GetSteamID() { return m_iSteamID; }
+	uint64 GetCredits() { return m_iCredits; }
+
+	void SetSteamID(const uint64 steamID) { m_iSteamID = steamID; }
+	void SetCredits(uint64 value) { m_iCredits = value; }
+
+private:
+	uint64 m_iSteamID;
+	uint64 m_iCredits;
+};
+extern CUtlVector<CShop> m_vecShopPlayers;
+
 
 extern CPlayerManager *g_playerManager;
