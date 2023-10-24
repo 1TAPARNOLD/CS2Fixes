@@ -180,7 +180,7 @@ void FASTCALL Detour_UTIL_SayText2Filter(
 		char sBuffer[256];
         if (pPlayer->IsAdminFlagSet(ADMFLAG_RESERVATION))
         {
-            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\13HELPER\1] \10j%s: \4%s", param1, param2);
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\13HELPER\1] \10%s: \4%s", param1, param2);
         }
         else if (pPlayer->IsAdminFlagSet(ADMFLAG_GENERIC))
         {
@@ -188,23 +188,23 @@ void FASTCALL Detour_UTIL_SayText2Filter(
         }
         else if (pPlayer->IsAdminFlagSet(ADMFLAG_KICK))
         {
-            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4MODERATOR]\10 %s: \4%s", param1, param2);
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4MODERATOR\1]\10 %s: \4%s", param1, param2);
         }
         else if (pPlayer->IsAdminFlagSet(ADMFLAG_SLAY))
         {
-            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\7VETERAN]\10 %s: \4%s", param1, param2);
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\7VETERAN\1]\10 %s: \4%s", param1, param2);
         }
         else if (pPlayer->IsAdminFlagSet(ADMFLAG_VOTE))
         {
-            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\27MANAGER]\10 %s: \4%s", param1, param2);
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\7MANAGER\1]\10 %s: \4%s", param1, param2);
         }
         else if (pPlayer->IsAdminFlagSet(ADMFLAG_CHANGEMAP))
         {
-            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\bCO-OWNER]\14 %s: \4%s", param1, param2);
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\bCO-OWNER\1]\14 %s: \4%s", param1, param2);
         }
         else if (pPlayer->IsAdminFlagSet(ADMFLAG_CHEATS))
         {
-            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2OWNER]\14 %s: \2%s", param1, param2);
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2OWNER\1]\14 %s: \2%s", param1, param2);
         }
         else {
             V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4Player\1]\1 %s: \1%s", param1, param2);
