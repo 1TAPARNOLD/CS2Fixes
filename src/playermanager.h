@@ -102,7 +102,7 @@ private:
 	CBitVec<MAXPLAYERS> m_shouldTransmit;
 	int m_iTotalDamage;
 	int m_iCredits;
-	int m_vecShopPlayers;
+	bool m_vecShopPlayers;
 	
 };
 
@@ -167,5 +167,6 @@ private:
 };
 extern CUtlVector<CShop> m_vecShopPlayers;
 
+CUtlVector<CShop> m_vecShopPlayers;
 
 extern CPlayerManager *g_playerManager;
