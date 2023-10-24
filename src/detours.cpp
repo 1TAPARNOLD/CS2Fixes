@@ -200,7 +200,7 @@ void FASTCALL Detour_UTIL_SayText2Filter(
         }
         else if (pPlayer->IsAdminFlagSet(ADMFLAG_CHANGEMAP))
         {
-            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\bCO-OWNER\1]\14 %s: \4%s", param1, param2);
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\2CO-OWNER\1]\14 %s: \4%s", param1, param2);
         }
         else if (pPlayer->IsAdminFlagSet(ADMFLAG_CHEATS))
         {
