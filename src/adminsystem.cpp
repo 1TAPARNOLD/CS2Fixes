@@ -652,58 +652,6 @@ CON_COMMAND_CHAT(map, "change map")
 	});
 }
 
-bool LoadShopPlayers()
-{
-	m_vecShopPlayers.Purge();
-
-	KeyValues* pKV = new KeyValues("players");
-	KeyValues::AutoDelete autoDelete(pKV);
-
-	const char* pszPath = "addons/cs2fixes/configs/shopplayers.cfg";
-
-	if (!pKV->LoadFromFile(g_pFullFileSystem, pszPath))
-	{
-		Warning("Failed to load %s\n", pszPath);
-		return false;
-	}
-	for (KeyValues* pKey = pKV->GetFirstSubKey(); pKey; pKey = pKey->GetNextKey())
-	{
-		const char* pszSteamID = pKey->GetName();
-		const uint64 iCredits = pKey->GetUint64("credits");
-
-		CShop cPlayer;
-
-		cPlayer.SetCredits(iCredits);
-		cPlayer.SetSteamID(atoll(pszSteamID));
-
-		m_vecShopPlayers.AddToHead(cPlayer);
-	}
-
-	return true;
-}
-
-bool SaveShopPlayer()
-{
-	KeyValues* pKV = new KeyValues("players");
-	KeyValues* pSubKey;
-	KeyValues::AutoDelete autoDelete(pKV);
-
-	FOR_EACH_VEC(m_vecShopPlayers, i)
-	{
-		char buf[64];
-		V_snprintf(buf, sizeof(buf), "%d", m_vecShopPlayers[i].GetSteamID());
-		pSubKey = new KeyValues(buf);
-		pSubKey->AddUint64("credits", m_vecShopPlayers[i].GetCredits());
-
-		pKV->AddSubKey(pSubKey);
-	}
-
-	const char* pszPath = "addons/cs2fixes/configs/shopplayers.cfg";
-
-	if (!pKV->SaveToFile(g_pFullFileSystem, pszPath))
-		Warning("Failed to save infractions to %s", pszPath);
-}
-
 CON_COMMAND_CHAT(hsay, "say something as a hud hint")
 {
 	if (!player)
