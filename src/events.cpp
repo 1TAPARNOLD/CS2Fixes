@@ -105,10 +105,7 @@ GAME_EVENT_F(player_spawn)
 		return;
 
 	CEntityHandle hController = pController->GetHandle();
-
-	int iCommandPlayer = pEntity->GetPlayerSlot();
-
-    ZEPlayer *pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
+	
 
 	// Gotta do this on the next frame...
 	new CTimer(0.0f, false, false, [hController]()
@@ -136,7 +133,7 @@ GAME_EVENT_F(player_spawn)
 		pPawn->m_pCollision->m_CollisionGroup = COLLISION_GROUP_DEBRIS;
 		pPawn->CollisionRulesChanged();
 
-		SetClanTag(player, "[TEST TAG]");
+		SetClanTag(pZEPlayer, "[TEST TAG]");
 
 	});
 
