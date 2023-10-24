@@ -52,4 +52,5 @@ void addresses::Initialize(CGameConfig *g_GameConfig)
 	RESOLVE_SIG(g_GameConfig, "SetGroundEntity", addresses::SetGroundEntity);
 	RESOLVE_SIG(g_GameConfig, "CCSPlayerController_SwitchTeam", addresses::CCSPlayerController_SwitchTeam);
 	RESOLVE_SIG(g_GameConfig, "UTIL_Remove", addresses::UTIL_Remove);
+	RESOLVE_SIG(modules::server, sigs::SetClanTag, addresses::SetClanTag);
 }
