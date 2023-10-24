@@ -53,5 +53,4 @@ namespace addresses
 	inline void(FASTCALL *SetGroundEntity)(Z_CBaseEntity *ent, Z_CBaseEntity *ground);
 	inline void(FASTCALL *CCSPlayerController_SwitchTeam)(CCSPlayerController *pController, uint32 team);
 	inline void(FASTCALL *UTIL_Remove)(CEntityInstance*);
-	inline void(FASTCALL* SetClanTag)(CBasePlayerController *player, const char* tag);
 }
