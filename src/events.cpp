@@ -122,10 +122,10 @@ GAME_EVENT_F(player_spawn)
 			pZEPlayer->SetUsedMedkit(false);
 		}
 
-		if(!player)
+		if(!pZEPlayer)
 		return;
 
-	SetClanTag(player, "[TEST TAG]");
+	SetClanTag(pZEPlayer, "[TEST TAG]");
 
 		CBasePlayerPawn *pPawn = pController->GetPawn();
 
