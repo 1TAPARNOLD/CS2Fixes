@@ -92,13 +92,16 @@ GAME_EVENT_F(player_hurt)
 
 }
 
-void SetClanTag(CBasePlayerController *player, const char *tag)
+
+
+GAME_EVENT_F(player_spawn)
+{
+
+	void SetClanTag(CBasePlayerController *player, const char *tag)
 {
 	addresses::SetClanTag(player, tag);
 }
 
-GAME_EVENT_F(player_spawn)
-{
 	CBasePlayerController *pController = (CBasePlayerController*)pEvent->GetPlayerController("userid");
 
 	if (!pController)
