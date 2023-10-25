@@ -92,15 +92,19 @@ GAME_EVENT_F(player_hurt)
 
 }
 
-	void SetClanTag(CBasePlayerController *player, const char *tag)
+	void SetClanTag(CCSPlayerController *pEntity, const char *tag)
 {
-	addresses::SetClanTag(player, tag);
+	addresses::SetClanTag(pEntity, tag);
 }
 
 GAME_EVENT_F(player_spawn)
 {
 
 	CBasePlayerController *pController = (CBasePlayerController*)pEvent->GetPlayerController("userid");
+	
+	int iCommandPlayer = pEntity->GetPlayerSlot();
+
+    ZEPlayer *pPlayer = g_playerManager->GetPlayer(iCommandPlayer);
 
 	if (!pController)
 		return;
@@ -128,7 +132,7 @@ GAME_EVENT_F(player_spawn)
 
 
 
-	addresses::SetClanTag(pZEPlayer, "[TEST TAG]");
+	addresses::SetClanTag(pEntity, "[TEST TAG]");
 
 		CBasePlayerPawn *pPawn = pController->GetPawn();
 
