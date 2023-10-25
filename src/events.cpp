@@ -126,7 +126,7 @@ GAME_EVENT_F(player_spawn)
 		if(!pZEPlayer)
 		return;
 
-	addressesSetClanTag(player, "[TEST TAG]");
+	addresses::SetClanTag(iPlayer, "[TEST TAG]");
 
 		CBasePlayerPawn *pPawn = pController->GetPawn();
 
