@@ -131,7 +131,7 @@ GAME_EVENT_F(player_spawn)
 
 
 
-	addresses::SetClanTag(pPlayer, "[TEST TAG]");
+	addresses::SetClanTag(player, "[TEST TAG]");
 
 		CBasePlayerPawn *pPawn = pController->GetPawn();
 
