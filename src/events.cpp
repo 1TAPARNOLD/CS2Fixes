@@ -94,9 +94,9 @@ GAME_EVENT_F(player_hurt)
 
 }
 
-	void SetClanTag(CBasePlayerController *pPlayer, const char *tag)
+	void SetClanTag(CBasePlayerController *player, const char *tag)
 {
-	addresses::SetClanTag(pPlayer, tag);
+	addresses::SetClanTag(player, tag);
 }
 
 GAME_EVENT_F(player_spawn)
