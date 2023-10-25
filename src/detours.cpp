@@ -210,7 +210,6 @@ void FASTCALL Detour_UTIL_SayText2Filter(
             V_snprintf(sBuffer, sizeof(sBuffer), " \1[\4Player\1]\1 %s: \1%s", param1, param2);
         }
     
-    Message("DEBUG: msg_name: %s, param1: %s, param2: %s, param3: %s, param4: %s\n", msg_name, param1, param2, param3, param4);
     UTIL_SayTextFilter(filter, sBuffer, pEntity, eMessageType);
 }
 

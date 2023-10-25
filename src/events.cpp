@@ -172,7 +172,6 @@ GAME_EVENT_F(player_spawn)
 		pPawn->CollisionRulesChanged();
 	});
 
-	Message("EVENT FIRED: %s %s\n", pEvent->GetName(), pController->GetPlayerName());
 }
 
 GAME_EVENT_F(player_death)
