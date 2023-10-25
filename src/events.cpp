@@ -81,13 +81,13 @@ GAME_EVENT_F(player_team)
 GAME_EVENT_F(player_hurt)
 {
 	CBasePlayerController *pController = (CBasePlayerController*)pEvent->GetPlayerController("userid");
-    ZEPlayer* pPlayer = g_playerManager->GetPlayer(pController->GetPlayerSlot());
+    ZEPlayer* pZEPlayer = g_playerManager->GetPlayer(pController->GetPlayerSlot());
 
 	CBasePlayerController* died = (CBasePlayerController*)pEvent->GetPlayerController("userid");
 	CBasePlayerController* killer = (CBasePlayerController*)pEvent->GetPlayerController("attacker");
 	uint16 health = pEvent->GetInt("dmg_health");
 
-	if (pPlayer->IsAdminFlagSet(ADMFLAG_CONVARS))
+	if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CONVARS))
 	{
 		ClientPrint(killer, HUD_PRINTCENTER, "-\4%d ", health);
 	}
@@ -128,31 +128,31 @@ GAME_EVENT_F(player_spawn)
 		if(!pZEPlayer)
 		return;
 
-		if (pPlayer->IsAdminFlagSet(ADMFLAG_RESERVATION))
+		if (pZEPlayer->IsAdminFlagSet(ADMFLAG_RESERVATION))
         {
             addresses::SetClanTag(pController, "[HELPER]");
         }
-        else if (pPlayer->IsAdminFlagSet(ADMFLAG_GENERIC))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_GENERIC))
         {
             addresses::SetClanTag(pController, "[ADMINISTRATOR]");
         }
-        else if (pPlayer->IsAdminFlagSet(ADMFLAG_KICK))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_KICK))
         {
             addresses::SetClanTag(pController, "[MODERATOR]");
         }
-        else if (pPlayer->IsAdminFlagSet(ADMFLAG_SLAY))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_SLAY))
         {
             addresses::SetClanTag(pController, "[VETERAN]");
         }
-        else if (pPlayer->IsAdminFlagSet(ADMFLAG_VOTE))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_VOTE))
         {
             addresses::SetClanTag(pController, "[MANAGER]");
         }
-        else if (pPlayer->IsAdminFlagSet(ADMFLAG_CHANGEMAP))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CHANGEMAP))
         {
             addresses::SetClanTag(pController, "[CO-OWNER]");
         }
-        else if (pPlayer->IsAdminFlagSet(ADMFLAG_CHEATS))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CHEATS))
         {
             addresses::SetClanTag(pController, "[OWNER]");
         }
