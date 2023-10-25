@@ -228,7 +228,7 @@ void FASTCALL Detour_Host_Say(CCSPlayerController *pController, CCommand &args, 
 		{
 			IGameEvent *pEvent = g_gameEventManager->CreateEvent("player_chat");
 
-			if (pEvent)
+			if (pEvent)	
 			{
 				pEvent->SetBool("teamonly", teamonly);
 				pEvent->SetInt("userid", pController->entindex());

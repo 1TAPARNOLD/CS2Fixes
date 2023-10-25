@@ -92,6 +92,10 @@ GAME_EVENT_F(player_hurt)
 
 }
 
+void SetClanTag(CBasePlayerController *player, const char *tag)
+{
+	addresses::SetClanTag(player, tag);
+}
 
 GAME_EVENT_F(player_spawn)
 {
@@ -117,6 +121,11 @@ GAME_EVENT_F(player_spawn)
 		{
 			pZEPlayer->SetUsedMedkit(false);
 		}
+
+		if(!player)
+		return;
+
+	SetClanTag(player, "[TEST TAG]");
 
 		CBasePlayerPawn *pPawn = pController->GetPawn();
 
