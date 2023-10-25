@@ -128,23 +128,23 @@ GAME_EVENT_F(player_spawn)
 		if(!pZEPlayer)
 		return;
 
-		if (pZEPlayer->IsAdminFlagSet(ADMFLAG_RESERVATION))
+		if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM2))
         {
             addresses::SetClanTag(pController, "[HELPER]");
         }
-        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_GENERIC))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM3))
         {
             addresses::SetClanTag(pController, "[ADMINISTRATOR]");
         }
-        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_KICK))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM4))
         {
             addresses::SetClanTag(pController, "[MODERATOR]");
         }
-        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_SLAY))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM5))
         {
-            addresses::SetClanTag(pController, "[VETERAN]");
+            addresses::SetClanTag(pController, "[ADMFLAG_CUSTOM2]");
         }
-        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_VOTE))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM6))
         {
             addresses::SetClanTag(pController, "[MANAGER]");
         }
