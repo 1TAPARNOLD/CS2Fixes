@@ -119,6 +119,7 @@ GAME_EVENT_F(player_spawn)
 
 		int iPlayer = pController->GetPlayerSlot();
 		ZEPlayer* pZEPlayer = g_playerManager->GetPlayer(iPlayer);
+		ZEPlayer* pPlayer = g_playerManager->GetPlayer(pController->GetPlayerSlot());
 
 		if (pZEPlayer)
 		{
@@ -130,7 +131,7 @@ GAME_EVENT_F(player_spawn)
 
 
 
-	addresses::SetClanTag(player, "[TEST TAG]");
+	addresses::SetClanTag(pPlayer, "[TEST TAG]");
 
 		CBasePlayerPawn *pPawn = pController->GetPawn();
 
