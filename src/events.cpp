@@ -128,7 +128,7 @@ GAME_EVENT_F(player_spawn)
 		if(!pZEPlayer)
 		return;
 
-		if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM1))
+		if (pZEPlayer->IsAdminFlagSet(ADMFLAG_RESERVATION))
         {
             addresses::SetClanTag(pController, "[HELPER]");
         }
