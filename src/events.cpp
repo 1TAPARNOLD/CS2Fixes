@@ -36,6 +36,7 @@ extern CEntitySystem *g_pEntitySystem;
 
 CUtlVector<CGameEventListener *> g_vecEventListeners;
 
+
 void RegisterEventListeners()
 {
 	if (!g_gameEventManager)
@@ -119,7 +120,7 @@ GAME_EVENT_F(player_spawn)
 
 		int iPlayer = pController->GetPlayerSlot();
 		ZEPlayer* pZEPlayer = g_playerManager->GetPlayer(iPlayer);
-		ZEPlayer* pPlayer = g_playerManager->GetPlayer(pController->GetPlayerSlot());
+		CBasePlayerController* pPlayer = dynamic_cast<CBasePlayerController*>(g_playerManager->GetPlayer(iPlayer));
 
 		if (pZEPlayer)
 		{
