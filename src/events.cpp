@@ -161,8 +161,6 @@ GAME_EVENT_F(player_spawn)
         }
 
 
-	addresses::SetClanTag(pController, "[TEST TAG]");
-
 		CBasePlayerPawn *pPawn = pController->GetPawn();
 
 		// Just in case somehow there's health but the player is, say, an observer
