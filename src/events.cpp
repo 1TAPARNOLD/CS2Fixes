@@ -103,7 +103,6 @@ GAME_EVENT_F(player_spawn)
 {
 
 	CBasePlayerController *pController = (CBasePlayerController*)pEvent->GetPlayerController("userid");
-	CBasePlayerController *pPlayer = g_playerManager->GetPlayer(pController->GetPlayerSlot());
 
 	if (!pController)
 		return;
