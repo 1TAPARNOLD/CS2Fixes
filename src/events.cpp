@@ -103,7 +103,8 @@ GAME_EVENT_F(player_spawn)
 {
 
 	CBasePlayerController *pController = (CBasePlayerController*)pEvent->GetPlayerController("userid");
-	
+	int player1 = pController->GetPlayerSlot();
+	CBasePlayerController *pPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)(player1 + 1));
 
 	if (!pController)
 		return;
@@ -120,7 +121,6 @@ GAME_EVENT_F(player_spawn)
 
 		int iPlayer = pController->GetPlayerSlot();
 		ZEPlayer* pZEPlayer = g_playerManager->GetPlayer(iPlayer);
-		CBasePlayerController* pPlayer = dynamic_cast<CBasePlayerController*>(g_playerManager->GetPlayer(iPlayer));
 
 		if (pZEPlayer)
 		{
