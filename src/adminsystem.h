@@ -38,12 +38,17 @@
 #define ADMFLAG_RCON				(1<<12)		/**< Convenience macro for Admin_RCON as a FlagBit */
 #define ADMFLAG_CHEATS				(1<<13)		/**< Convenience macro for Admin_Cheats as a FlagBit */
 #define ADMFLAG_ROOT				(1<<14)		/**< Convenience macro for Admin_Root as a FlagBit */
-#define ADMFLAG_CUSTOM1				(1<<15)		/**< Convenience macro for Admin_Custom1 as a FlagBit */
-#define ADMFLAG_CUSTOM2				(1<<16)		/**< Convenience macro for Admin_Custom2 as a FlagBit */
-#define ADMFLAG_CUSTOM3				(1<<17)		/**< Convenience macro for Admin_Custom3 as a FlagBit */
-#define ADMFLAG_CUSTOM4				(1<<18)		/**< Convenience macro for Admin_Custom4 as a FlagBit */
-#define ADMFLAG_CUSTOM5				(1<<19)		/**< Convenience macro for Admin_Custom5 as a FlagBit */
-#define ADMFLAG_CUSTOM6				(1<<20)		/**< Convenience macro for Admin_Custom6 as a FlagBit */
+#define ADMFLAG_CUSTOM1				(1<<14)		/**< Convenience macro for Admin_Custom1 as a FlagBit */
+#define ADMFLAG_CUSTOM2				(1<<15)		/**< Convenience macro for Admin_Custom2 as a FlagBit */
+#define ADMFLAG_CUSTOM3				(1<<16)		/**< Convenience macro for Admin_Custom3 as a FlagBit */
+#define ADMFLAG_CUSTOM4				(1<<17)		/**< Convenience macro for Admin_Custom4 as a FlagBit */
+#define ADMFLAG_CUSTOM5				(1<<18)		/**< Convenience macro for Admin_Custom5 as a FlagBit */
+#define ADMFLAG_CUSTOM6				(1<<19)		/**< Convenience macro for Admin_Custom6 as a FlagBit */
+#define ADMFLAG_CUSTOM7				(1<<20)		/**< Convenience macro for Admin_Custom6 as a FlagBit */
+#define ADMFLAG_CUSTOM8				(1<<21)		/**< Convenience macro for Admin_Custom6 as a FlagBit */
+#define ADMFLAG_CUSTOM9				(1<<22)		/**< Convenience macro for Admin_Custom6 as a FlagBit */
+#define ADMFLAG_CUSTOM10				(1<<23)		/**< Convenience macro for Admin_Custom6 as a FlagBit */
+#define ADMFLAG_CUSTOM11				(1<<24)		/**< Convenience macro for Admin_Custom6 as a FlagBit */
 
 
 class CInfractionBase
