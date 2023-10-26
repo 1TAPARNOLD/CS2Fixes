@@ -142,13 +142,13 @@ GAME_EVENT_F(player_spawn)
         }
         else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM4))
         {
-            addresses::SetClanTag(pController, "[ADMFLAG_CUSTOM2]");
+            addresses::SetClanTag(pController, "[VETERAN]");
         }
         else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM5))
         {
             addresses::SetClanTag(pController, "[MANAGER]");
         }
-        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CHANGEMAP))
+        else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM6))
         {
             addresses::SetClanTag(pController, "[CO-OWNER]");
         }
