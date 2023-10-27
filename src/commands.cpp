@@ -256,6 +256,25 @@ for (int i = 0; i < MAXPLAYERS; i++)
 }
 }
 
+CON_COMMAND_CHAT(print_rcon_players, "Print all players with ADMFLAG_RCON")
+{
+	if (!player)
+		return;
+
+	for (int i = 1; i <= g_pEngineServer->GetMaxClients(); i++)
+	{
+		CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)i);
+		if (!cPlayer)
+			continue;
+
+		ZEPlayer* pPlayer = g_playerManager->GetPlayer(i - 1);
+		if (!pPlayer || !pPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM1))
+			continue;
+
+		ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX "Player %s is Helper", cPlayer->GetPlayerName());
+	}
+}
+
 CON_COMMAND_CHAT(rcon, "send a command to server console")
 {
 	if (!player)
