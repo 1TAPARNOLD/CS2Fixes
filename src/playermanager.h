@@ -50,6 +50,7 @@ public:
 		m_bConnected = false;
 		m_iTotalDamage = 0;
 		m_bUsedMedkit = false;
+		m_iCredits = 0;
 	}
 
 	bool IsFakeClient() { return m_bFakeClient; }
@@ -98,7 +99,6 @@ private:
 	int m_iHideDistance;
 	CBitVec<MAXPLAYERS> m_shouldTransmit;
 	int m_iTotalDamage;
-	int m_iCredits;
 };
 
 class CPlayerManager
