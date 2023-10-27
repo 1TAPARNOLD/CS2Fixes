@@ -152,6 +152,14 @@ GAME_EVENT_F(player_spawn)
         {
             addresses::SetClanTag(pController, "[CO-OWNER]");
         }
+		else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM7))
+        {
+            addresses::SetClanTag(pController, "[TESTER]");
+        }
+		else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM8))
+        {
+            addresses::SetClanTag(pController, "[SUPERVIZOR]");
+        }
         else if (pZEPlayer->IsAdminFlagSet(ADMFLAG_CHEATS))
         {
             addresses::SetClanTag(pController, "[OWNER]");
