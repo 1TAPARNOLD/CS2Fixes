@@ -33,6 +33,9 @@
 #include "ctimer.h"
 #include "eventlistener.h"
 #include "tier0/memdbgon.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 
 extern CEntitySystem *g_pEntitySystem;
@@ -256,6 +259,41 @@ for (int i = 0; i < MAXPLAYERS; i++)
         ClientPrint(cPlayer, HUD_PRINTTALK, " \1(\2ADMINS CHAT\1) \4%s: \1 \13%s ", player->GetPlayerName(), args.ArgS());
 }
 }
+
+
+#define CREDITS_FILE_PATH "addons/cs2fixes/data/credits.txt";
+
+// Function to generate a random number between min and max (inclusive)
+int GenerateRandomNumber(int min, int max)
+{
+	srand(time(NULL));
+	return rand() % (max - min + 1) + min;
+}
+
+// Function to write the player's credits to a file
+void WriteCreditsToFile(int credits)
+{
+	FILE* file = fopen(CREDITS_FILE_PATH, "w");
+	if (file)
+	{
+		fprintf(file, "%d", credits);
+		fclose(file);
+	}
+}
+
+// Function to read the player's credits from a file
+int ReadCreditsFromFile()
+{
+	int credits = 0;
+	FILE* file = fopen(CREDITS_FILE_PATH, "r");
+	if (file)
+	{
+		fscanf(file, "%d", &credits);
+		fclose(file);
+	}
+	return credits;
+}
+
 
 CON_COMMAND_CHAT(print_rcon_players, "Print all players with ADMFLAG_RCON")
 {

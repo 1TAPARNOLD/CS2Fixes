@@ -109,6 +109,8 @@ GAME_EVENT_F(player_spawn)
 
 	CEntityHandle hController = pController->GetHandle();
 
+	
+
 	// Gotta do this on the next frame...
 	new CTimer(0.0f, false, false, [hController]()
 	{
@@ -124,6 +126,14 @@ GAME_EVENT_F(player_spawn)
 		{
 			pZEPlayer->SetUsedMedkit(false);
 		}
+
+			int credits = ReadCreditsFromFile();
+			if (credits == 0)
+		{	
+			credits = GenerateRandomNumber(1000, 5000);
+			WriteCreditsToFile(credits);
+		}
+	pZEPlayer->m_iCredits = credits;
 
 		if(!pZEPlayer)
 		return;
