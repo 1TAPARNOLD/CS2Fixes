@@ -27,7 +27,6 @@
 
 
 
-
 #include "tier0/memdbgon.h"
 #include "playermanager.h"
 
@@ -127,7 +126,7 @@ GAME_EVENT_F(player_spawn)
 		{
 			pZEPlayer->SetUsedMedkit(false);
 		}
-
+		
 
 		if(!pZEPlayer)
 		return;

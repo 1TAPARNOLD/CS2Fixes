@@ -257,8 +257,6 @@ for (int i = 0; i < MAXPLAYERS; i++)
 }
 }
 
-
-
 CON_COMMAND_CHAT(print_rcon_players, "Print all players with ADMFLAG_RCON")
 {
 	if (!player)
