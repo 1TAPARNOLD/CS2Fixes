@@ -109,8 +109,6 @@ GAME_EVENT_F(player_spawn)
 
 	CEntityHandle hController = pController->GetHandle();
 
-	
-
 	// Gotta do this on the next frame...
 	new CTimer(0.0f, false, false, [hController]()
 	{
@@ -126,7 +124,6 @@ GAME_EVENT_F(player_spawn)
 		{
 			pZEPlayer->SetUsedMedkit(false);
 		}
-		
 
 		if(!pZEPlayer)
 		return;

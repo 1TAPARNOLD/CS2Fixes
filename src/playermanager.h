@@ -59,8 +59,6 @@ public:
 	const CSteamID* GetSteamId() { return m_SteamID; }
 	bool IsAdminFlagSet(uint64 iFlag);
 	
-
-
 	void SetAuthenticated() { m_bAuthenticated = true; }
 	void SetConnected() { m_bConnected = true; }
 	void SetSteamId(const CSteamID* steamID) { m_SteamID = steamID; }

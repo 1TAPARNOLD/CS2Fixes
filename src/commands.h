@@ -53,14 +53,6 @@ struct WeaponMapEntry_t
 
 void ParseChatCommand(const char *, CCSPlayerController *);
 
-// Function to generate a random number between min and max (inclusive)
-int GenerateRandomNumber(int min, int max)
-{
-	srand(time(NULL));
-	return rand() % (max - min + 1) + min;
-}
-
-
 #define CON_COMMAND_CHAT(name, description)																											\
 	void name##_callback(const CCommand &args, CCSPlayerController *player);																		\
 	static void name##_con_callback(const CCommandContext &context, const CCommand &args)															\
