@@ -39,6 +39,7 @@ extern CEntitySystem *g_pEntitySystem;
 extern IVEngineServer2* g_pEngineServer2;
 extern int g_targetPawn;
 extern int g_targetController;
+extern CGlobalVars *gpGlobals;
 
 WeaponMapEntry_t WeaponMap[] = {
 	{"bizon",		  "weapon_bizon",			 1400, 26},
@@ -261,7 +262,7 @@ CON_COMMAND_CHAT(print_rcon_players, "Print all players with ADMFLAG_RCON")
 	if (!player)
 		return;
 
-	for (int i = 1; i <= g_pEngineServer->GetMaxClients(); i++)
+	for (int i = 1; i <= gpGlobals->maxClients; i++)
 	{
 		CBasePlayerController* cPlayer = (CBasePlayerController*)g_pEntitySystem->GetBaseEntity((CEntityIndex)i);
 		if (!cPlayer)
