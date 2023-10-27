@@ -196,15 +196,15 @@ void FASTCALL Detour_UTIL_SayText2Filter(
         }
 		else if (pPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM7)) // u
         {
-            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\7TESTER\1]\10 %s: \4%s", param1, param2);
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\11TESTER\1]\10 %s: \4%s", param1, param2);
         }
-		else if (pPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM4)) // r
+		else if (pPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM5)) // s
         {
-            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\7VETERAN\1]\10 %s: \4%s", param1, param2);
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\7MANAGER\1]\10 %s: \4%s", param1, param2);
         }
         else if (pPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM8)) // v
         {
-            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\7SUPERVIZOR\1]\10 %s: \4%s", param1, param2);
+            V_snprintf(sBuffer, sizeof(sBuffer), " \1[\20SUPERVIZOR\1]\10 %s: \4%s", param1, param2);
         }
         else if (pPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM6)) // t
         {
