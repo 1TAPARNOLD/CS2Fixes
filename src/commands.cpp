@@ -272,7 +272,12 @@ CON_COMMAND_CHAT(print_rcon_players, "Print all players with ADMFLAG_RCON")
 		if (!pPlayer || !pPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM1))
 			continue;
 
-		ClientPrint(player, HUD_PRINTTALK, CHAT_PREFIX "Player %s is Helper", cPlayer->GetPlayerName());
+		ClientPrint(player, HUD_PRINTCONSOLE, CHAT_PREFIX "Player %s is Helper", cPlayer->GetPlayerName());
+
+		if (!pPlayer || !pPlayer->IsAdminFlagSet(ADMFLAG_CUSTOM2))
+		continue;
+
+		ClientPrint(player, HUD_PRINTCONSOLE, CHAT_PREFIX "Player %s is Admin", cPlayer->GetPlayerName());
 	}
 }
 
