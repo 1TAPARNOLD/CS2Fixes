@@ -128,13 +128,6 @@ GAME_EVENT_F(player_spawn)
 			pZEPlayer->SetUsedMedkit(false);
 		}
 
-			int credits = ReadCreditsFromFile();
-			if (credits == 0)
-		{	
-			credits = GenerateRandomNumber(1000, 5000);
-			WriteCreditsToFile(credits);
-		}
-	pZEPlayer->m_iCredits = credits;
 
 		if(!pZEPlayer)
 		return;
