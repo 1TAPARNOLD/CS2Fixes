@@ -98,6 +98,7 @@ private:
 	int m_iHideDistance;
 	CBitVec<MAXPLAYERS> m_shouldTransmit;
 	int m_iTotalDamage;
+	int m_iCredits;
 };
 
 class CPlayerManager
