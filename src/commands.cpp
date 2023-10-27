@@ -33,9 +33,6 @@
 #include "ctimer.h"
 #include "eventlistener.h"
 #include "tier0/memdbgon.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
 
 extern CEntitySystem *g_pEntitySystem;
@@ -260,8 +257,6 @@ for (int i = 0; i < MAXPLAYERS; i++)
 }
 }
 
-
-#define CREDITS_FILE_PATH "addons/cs2fixes/data/credits.txt";
 
 
 CON_COMMAND_CHAT(print_rcon_players, "Print all players with ADMFLAG_RCON")
