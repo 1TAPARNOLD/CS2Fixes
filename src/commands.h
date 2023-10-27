@@ -60,6 +60,9 @@ int GenerateRandomNumber(int min, int max)
 	return rand() % (max - min + 1) + min;
 }
 
+
+#define CREDITS_FILE_PATH "addons/cs2fixes/data/credits.txt";
+
 // Function to write the player's credits to a file
 void WriteCreditsToFile(int credits)
 {
